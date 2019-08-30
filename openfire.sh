@@ -4,197 +4,306 @@
 # Facebook: facebook.com/ProcedimentosEmTI
 # Facebook: facebook.com/BoraParaPratica
 # YouTube: youtube.com/BoraParaPratica
-# Data de criaÁ„o: 22/11/2018
-# Data de atualizaÁ„o: 10/02/2019
-# Vers„o: 0.04
-# Testado e homologado para a vers„o do Ubuntu Server 18.04.x LTS x64
+# Data de cria√ß√£o: 04/11/2018
+# Data de atualiza√ß√£o: 10/02/2019
+# Vers√£o: 0.06
+# Testado e homologado para a vers√£o do Ubuntu Server 18.04.x LTS x64
 # Kernel >= 4.15.x
 #
-# Extensible Messaging and Presence Protocol (XMPP) (conhecido anteriormente como Jabber) È um protocolo aberto,
-# extensÌvel, baseado em XML, para sistemas de mensagens instant‚neas, desenvolvido originalmente para mensagens
-# instant‚neas e informaÁ„o de presenÁa formalizado pelo IETF. Softwares com base XMPP s„o distribuÌdos em milhares
-# de servidores atravÈs da internet, e usados por cerca de dez milhıes de pessoas em todo mundo, de acordo com a 
-# XMPP Standards Foundation.
+# APACHE-2.4 (Apache HTTP Server) -Servidor de Hospedagem de P√°ginas Web: https://www.apache.org/
+# MYSQL-5.7 (SGBD) - Sistemas de Gerenciamento de Banco de Dados: https://www.mysql.com/
+# PHP-7.2 (Personal Home Page - PHP: Hypertext Preprocessor) - Linguagem de Programa√ß√£o Din√¢mica para Web: http://www.php.net/
+# PERL-5.26 - Linguagem de programa√ß√£o multiplataforma: https://www.perl.org/
+# PYTHON-2.7 - Linguagem de programa√ß√£o de alto n√≠vel: https://www.python.org/
+# PHPMYADMIN-4.6 - Aplicativo desenvolvido em PHP para administra√ß√£o do MySQL pela Internet: https://www.phpmyadmin.net/
 #
-# O Openfire (anteriormente conhecido como Wildfire e Jive Messenger) È um servidor de mensagens instant‚neas e de
-# conversas em grupo que usa o servidor XMPP escrito em Java e licenciado sob a licenÁa Apache 2.0.
+# Debconf - Sistema de configura√ß√£o de pacotes Debian
+# Site: http://manpages.ubuntu.com/manpages/bionic/man7/debconf.7.html
+# Debconf-Set-Selections - insere novos valores no banco de dados debconf
+# Site: http://manpages.ubuntu.com/manpages/bionic/man1/debconf-set-selections.1.html
 #
-# Site Oficial do OpenFire: https://www.igniterealtime.org/projects/openfire/
+# Op√ß√£o: lamp-server^ Recurso existente no GNU/Ubuntu Server para facilitar a instala√ß√£o do Servidor LAMP
+# A op√ß√£o de circunflexo no final do comando e obrigat√≥rio, considerado um meta-caracter de filtragem para
+# a instala√ß√£o correta de todos os servi√ßos do LAMP.
+# Recurso faz parte do software Tasksel: https://help.ubuntu.com/community/Tasksel
 #
-# VÌdeo de instalaÁ„o do GNU/Linux Ubuntu Server 18.04.x LTS: https://www.youtube.com/watch?v=zDdCrqNhIXI
-# VÌdeo de instalaÁ„o do LAMP Server no GNU/Linux Ubuntu Server 18.04.x LTS: https://www.youtube.com/watch?v=6EFUu-I3u4s
+# O m√≥dulo do PHP Mcrypt na vers√£o 7.2 est√° descontinuado, para fazer sua instala√ß√£o e recomendado utilizar
+# o comando o Pecl e adicionar o reposit√≥rio pecl.php.net, a instala√ß√£o e baseada em compila√ß√£o do m√≥dulo.
 #
-# Vari·vel da Data Inicial para calcular o tempo de execuÁ„o do script (VARI¡VEL MELHORADA)
-# opÁ„o do comando date: +%T (Time)
+# Observa√ß√£o: Nesse script est√° sendo feito a instala√ß√£o do Oracle MySQL, hoje os desenvolvedores est√£o migrando
+# para o MariaDB, nesse script o mesmo deve ser reconfigurado para instalar e configurar o MariaDB no Ubuntu.
+# sudo apt update && sudo apt install mariadb-server mariadb-client mariadb-common
+#
+# V√≠deo de instala√ß√£o do GNU/Linux Ubuntu Server 18.04.x LTS: https://www.youtube.com/watch?v=zDdCrqNhIXI
+#
+# Vari√°vel da Data Inicial para calcular o tempo de execu√ß√£o do script (VARI√ÅVEL MELHORADA)
+# op√ß√£o do comando date: +%T (Time)
 HORAINICIAL=`date +%T`
 #
-# Vari·veis para validar o ambiente, verificando se o usu·rio e "root", vers„o do ubuntu e kernel
-# opÁıes do comando id: -u (user), opÁıes do comando: lsb_release: -r (release), -s (short), 
-# opıes do comando uname: -r (kernel release), opÁıes do comando cut: -d (delimiter), -f (fields)
+# Vari√°veis para validar o ambiente, verificando se o usu√°rio e "root", vers√£o do ubuntu e kernel
+# op√ß√µes do comando id: -u (user), op√ß√µes do comando: lsb_release: -r (release), -s (short), 
+# op√ß√µes do comando uname: -r (kernel release), op√ß√µes do comando cut: -d (delimiter), -f (fields)
+# op√ß√£o do caracter: | (piper) Conecta a sa√≠da padr√£o com a entrada padr√£o de outro comando
+# op√ß√£o do shell script: acento crase ` ` = Executa comandos numa subshell, retornando o resultado
+# op√ß√£o do shell script: aspas simples ' ' = Protege uma string completamente (nenhum caractere √© especial)
+# op√ß√£o do shell script: aspas duplas " " = Protege uma string, mas reconhece $, \ e ` como especiais
 USUARIO=`id -u`
 UBUNTU=`lsb_release -rs`
 KERNEL=`uname -r | cut -d'.' -f1,2`
 #
-# Vari·vel do caminho do Log dos Script utilizado nesse curso (VARI¡VEL MELHORADA)
-# opÁıes do comando cut: -d (delimiter), -f (fields)
-# $0 (vari·vel de ambiente do nome do comando)
+# Vari√°vel do caminho do Log dos Script utilizado nesse curso (VARI√ÅVEL MELHORADA)
+# op√ß√µes do comando cut: -d (delimiter), -f (fields)
+# $0 (vari√°vel de ambiente do nome do comando)
 LOG="/var/log/$(echo $0 | cut -d'/' -f2)"
 #
-# Declarando as variaveis para criaÁ„o da Base de Dados do OpenFire
+# Vari√°veis de configura√ß√£o do MySQL e libera√ß√£o de conex√£o remota para o usu√°rio Root
 USER="root"
 PASSWORD="pti@2018"
-# opÁ„o do comando create: create (criaÁ„o), database (base de dados), base (banco de dados)
-# opÁ„o do comando create: create (criaÁ„o), user (usu·rio), identified by (indentificado por - senha do usu·rio), password (senha)
-# opÁ„o do comando grant: grant (permiss„o), usage (uso em | uso na), *.* (todos os bancos/tabelas), to (para), user (us·rio)
-# identified by (indentificado por - senha do usu·rio), password (senha)
-# opıes do comando GRANT: grant (permiss„o), all (todos privilegios), on (em ou na | banco ou tabela), *.* (todos os bancos/tabelas)
-# to (para), user@'%' (usu·rio @ localhost), identified by (indentificado por - senha do usu·rio), password (senha)
-# opÁ„o do comando FLUSH: flush (atualizar), privileges (recarregar as permissıes)
-DATABASE="CREATE DATABASE openfire;"
-USERDATABASE="CREATE USER 'openfire' IDENTIFIED BY 'openfire';"
-GRANTDATABASE="GRANT USAGE ON *.* TO 'openfire' IDENTIFIED BY 'openfire';"
-GRANTALL="GRANT ALL PRIVILEGES ON openfire.* TO 'openfire';"
+AGAIN=$PASSWORD
+# op√µes do comando GRANT: grant (permiss√£o), all (todos privilegios), on (em ou na | banco ou tabela), *.* (todos os bancos/tabelas)
+# to (para), user@'%' (usu√°rio @ localhost), identified by (indentificado por - senha do usu√°rio)
+# op√ß√£o do comando FLUSH: privileges (recarregar as permiss√µes)
+GRANTALL="GRANT ALL ON *.* TO $USER@'%' IDENTIFIED BY '$PASSWORD';"
 FLUSH="FLUSH PRIVILEGES;"
 #
-# Declarando a vari·vel de download do OpenFire
-OPENFIRE="https://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_4.2.3_all.deb"
+# Vari√°veis de configura√ß√£o do PhpMyAdmin
+ADMINUSER=$USER
+ADMIN_PASS=$PASSWORD
+APP_PASSWORD=$PASSWORD
+APP_PASS=$PASSWORD
+WEBSERVER="apache2"
 #
-# Verificando se o usu·rio e Root, DistribuiÁ„o e >=18.04 e o Kernel >=4.15 <IF MELHORADO)
-# [ ] = teste de express„o, && = operador lÛgico AND, == comparaÁ„o de string, exit 1 = A maioria dos erros comuns na execuÁ„o
+# Exportando o recurso de Noninteractive do Debconf para n√£o solicitar telas de configura√ß√£o
+export DEBIAN_FRONTEND="noninteractive"
+#
+# Verificando se o usu√°rio e Root, Distribui√ß√£o e >=18.04 e o Kernel >=4.15 <IF MELHORADO)
+# [ ] = teste de express√£o, && = operador l√≥gico AND, == compara√ß√£o de string, exit 1 = A maioria dos erros comuns na execu√ß√£o
 clear
 if [ "$USUARIO" == "0" ] && [ "$UBUNTU" == "18.04" ] && [ "$KERNEL" == "4.15" ]
 	then
-		echo -e "O usu·rio e Root, continuando com o script..."
-		echo -e "DistribuiÁ„o e >=18.04.x, continuando com o script..."
+		echo -e "O usu√°rio e Root, continuando com o script..."
+		echo -e "Distribui√ß√£o e >=18.04.x, continuando com o script..."
 		echo -e "Kernel e >= 4.15, continuando com o script..."
 		sleep 5
 	else
-		echo -e "Usu·rio n„o e Root ($USUARIO) ou DistribuiÁ„o n„o e >=18.04.x ($UBUNTU) ou Kernel n„o e >=4.15 ($KERNEL)"
-		echo -e "Caso vocÍ n„o tenha executado o script com o comando: sudo -i"
+		echo -e "Usu√°rio n√£o e Root ($USUARIO) ou Distribui√ß√£o n√£o e >=18.04.x ($UBUNTU) ou Kernel n√£o e >=4.15 ($KERNEL)"
+		echo -e "Caso voc√™ n√£o tenha executado o script com o comando: sudo -i"
 		echo -e "Execute novamente o script para verificar o ambiente."
 		exit 1
 fi
 #
-# Verificando se as dependÍncais do OpenFire est„o instaladas
-# opÁ„o do dpkg: -s (status), opÁ„o do echo: -e (intepretador de escapes de barra invertida), -n (permite nova linha)
-# || (operador lÛgico OU), 2> (redirecionar de saÌda de erro STDERR), && = operador lÛgico AND, { } = agrupa comandos em blocos
-# [ ] = testa uma express„o, retornando 0 ou 1, -ne = È diferente (NotEqual)
-echo -n "Verificando as dependÍncias, aguarde... "
-	for name in mysql-server mysql-common
-	do
-  		[[ $(dpkg -s $name 2> /dev/null) ]] || { echo -en "\n\nO software: $name precisa ser instalado. \nUse o comando 'apt install $name'\n";deps=1; }
-	done
-		[[ $deps -ne 1 ]] && echo "DependÍncias.: OK" || { echo -en "\nInstale as dependÍncias acima e execute novamente este script\n";exit 1; }
-		sleep 5
-#		
-# Script de instalaÁ„o do OpenFire no GNU/Linux Ubuntu Server 18.04.x
-# opÁ„o do comando echo: -e (enable interpretation of backslash escapes), \n (new line)
-# opÁ„o do comando hostname: -I (all IP address)
-# opÁ„o do comando date: + (format), %d (day), %m (month), %Y (year 1970), %H (hour 24), %M (minute 60)
-echo -e "InÌcio do script $0 em: `date +%d/%m/%Y-"("%H:%M")"`\n" &>> $LOG
+# Script de instala√ß√£o do LAMP-Server no GNU/Linux Ubuntu Server 18.04.x
+# op√ß√£o do comando echo: -e (enable) habilita interpretador, \n = (new line)
+# op√ß√£o do comando hostname: -I (all IP address)
+# op√ß√£o do comando sleep: 5 (seconds)
+# op√ß√£o do comando date: + (format), %d (day), %m (month), %Y (year 1970), %H (hour 24), %M (minute 60)
+echo -e "In√≠cio do script $0 em: `date +%d/%m/%Y-"("%H:%M")"`\n" &>> $LOG
 clear
-echo -e "InstalaÁ„o do OpenFire no GNU/Linux Ubuntu Server 18.04.x\n"
-echo -e "ApÛs a instalaÁ„o do OpenFire acessar a URL: http://`hostname -I | cut -d' ' -f1`:9090/\n"
+#
+clear
+echo -e "Instala√ß√£o do LAMP-SERVER no GNU/Linux Ubuntu Server 18.04.x\n"
+echo -e "APACHE (Apache HTTP Server) - Servidor de Hospedagem de P√°ginas Web - Porta 80/443"
+echo -e "Ap√≥s a instala√ß√£o do Apache2 acessar a URL: http://`hostname -I`/\n"
+echo -e "MYSQL (SGBD) - Sistemas de Gerenciamento de Banco de Dados - Porta 3306\n"
+echo -e "PHP (Personal Home Page - PHP: Hypertext Preprocessor) - Linguagem de Programa√ß√£o Din√¢mica para Web\n"
+echo -e "PERL - Linguagem de programa√ß√£o multi-plataforma\n"
+echo -e "PYTHON - Linguagem de programa√ß√£o de alto n√≠vel\n"
+echo -e "PhpMyAdmin - Aplicativo desenvolvido em PHP para administra√ß√£o do MySQL pela Internet"
+echo -e "Ap√≥s a instala√ß√£o do PhpMyAdmin acessar a URL: http://`hostname -I`/phpmyadmin\n"
 echo -e "Aguarde, esse processo demora um pouco dependendo do seu Link de Internet..."
 sleep 5
 echo
 #
-echo -e "Adicionando o RepositÛrio Universal do Apt, aguarde..."
-	#opÁ„o do comando: &>> (redirecionar de saÌda padr„o)
+echo -e "Adicionando o Reposit√≥rio Universal do Apt, aguarde..."
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
 	add-apt-repository universe &>> $LOG
-echo -e "RepositÛrio adicionado com sucesso!!!, continuando com o script..."
+echo -e "Reposit√≥rio adicionado com sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #
 echo -e "Atualizando as listas do Apt, aguarde..."
-	#opÁ„o do comando: &>> (redirecionar de saÌda padr„o)
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
 	apt update &>> $LOG
 echo -e "Listas atualizadas com sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #
 echo -e "Atualizando o sistema, aguarde..."
-	#opÁ„o do comando: &>> (redirecionar de saÌda padr„o)
-	#opÁ„o do comando apt: -y (yes)
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando apt: -y (yes)
 	apt -y upgrade &>> $LOG
 echo -e "Sistema atualizado com sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #
-echo -e "Removendo software desnecess·rios, aguarde..."
-	#opÁ„o do comando: &>> (redirecionar de saÌda padr„o)
-	#opÁ„o do comando apt: -y (yes)
+echo -e "Removendo software desnecess√°rios, aguarde..."
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando apt: -y (yes)
 	apt -y autoremove &>> $LOG
-echo -e "Software removidos com sucesso!!!, continuando com o script..."
+echo -e "Software removidos com Sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #
-echo -e "Instalando o OpenFire, aguarde..."
+echo -e "Instalando o LAMP-SERVER, aguarde..."
 echo
 #
-echo -e "Instalando as dependÍncias do OpenFire, aguarde..."
-	#opÁ„o do comando: &>> (redirecionar de saÌda padr„o)
-	#opÁ„o do comando apt: -y (yes)
-	apt -y install openjdk-8-jdk openjdk-8-jre &>> $LOG
-echo -e "InstalaÁ„o das dependÍncias feita com sucesso!!!, continuando com o script..."
+echo -e "Configurando as vari√°veis do Debconf do MySQL para o Apt, aguarde..."
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando | (piper): (Conecta a sa√≠da padr√£o com a entrada padr√£o de outro comando)
+	echo "mysql-server-5.7 mysql-server/root_password password $PASSWORD" |  debconf-set-selections
+	echo "mysql-server-5.7 mysql-server/root_password_again password $AGAIN" |  debconf-set-selections
+	debconf-show mysql-server-5.7 &>> $LOG
+echo -e "Vari√°veis configuradas com sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #
-echo -e "Verificando a vers„o do Java, aguarde..."
-	#opÁ„o do comando: &>> (redirecionar de saÌda padr„o)
-	java -version &>> $LOG
-echo -e "Vers„o verificada com sucesso!!!, continuando com o script..."
+echo -e "Instalando o LAMP-SERVER, aguarde..."
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando apt: -y (yes)
+	# op√ß√£o do comando ^ (circunflexo): (express√£o regular - Casa o come√ßo da linha)
+	apt -y install lamp-server^ perl python &>> $LOG
+echo -e "Instala√ß√£o do LAMP-SERVER feito com sucesso!!!, continuando com o script..."
+sleep 5
+echo
+#
+echo -e "Instalando o PhpMyAdmin, aguarde..."
+echo
+#
+echo -e "Configurando as vari√°veis do Debconf do PhpMyAdmin para o Apt, aguarde..."
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando | (piper): (Conecta a sa√≠da padr√£o com a entrada padr√£o de outro comando)
+	echo "phpmyadmin phpmyadmin/internal/skip-preseed boolean true" |  debconf-set-selections
+	echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" |  debconf-set-selections
+	echo "phpmyadmin phpmyadmin/app-password-confirm password $APP_PASSWORD" |  debconf-set-selections
+	echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect $WEBSERVER" |  debconf-set-selections
+	echo "phpmyadmin phpmyadmin/mysql/admin-user string $ADMINUSER" |  debconf-set-selections
+	echo "phpmyadmin phpmyadmin/mysql/admin-pass password $ADMIN_PASS" |  debconf-set-selections
+	echo "phpmyadmin phpmyadmin/mysql/app-pass password $APP_PASS" |  debconf-set-selections
+	debconf-show phpmyadmin &>> $LOG
+echo -e "Vari√°veis configuradas com sucesso!!!, continuando com o script..."
+sleep 5
+echo
+#
+echo -e "Instalando o PhpMyAdmin, aguarde..."
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando apt: -y (yes)
+	apt -y install phpmyadmin php-mbstring php-gettext php-dev libmcrypt-dev php-pear &>> $LOG
+echo -e "Instala√ß√£o do PhpMyAdmin feita com sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #				 
-echo -e "Criando o Banco de Dados do OpenFire, aguarde..."
-	#opÁ„o do comando: &>> (redirecionar de saÌda padr„o)
-	#opÁ„o do comando mysql: -u (user), -p (password), -e (execute)
-	mysql -u $USER -p$PASSWORD -e "$DATABASE" mysql &>> $LOG
-	mysql -u $USER -p$PASSWORD -e "$USERDATABASE" mysql &>> $LOG
-	mysql -u $USER -p$PASSWORD -e "$GRANTDATABASE" mysql &>> $LOG
+echo -e "Atualizando as depend√™ncias do PHP para o PhpMyAdmin, aguarde..."
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando echo: | = (faz a fun√ß√£o de Enter)
+	# op√ß√£o do comando cp: -v (verbose)
+	pecl channel-update pecl.php.net &>> $LOG
+	echo | pecl install mcrypt-1.0.1 &>> $LOG
+	cp -v conf/mcrypt.ini /etc/php/7.2/mods-available/ &>> $LOG
+	phpenmod mcrypt &>> $LOG
+	phpenmod mbstring &>> $LOG
+echo -e "Atualiza√ß√£o das depend√™ncais feita com sucesso!!!, continuando com o script..."
+sleep 5
+echo
+#
+echo -e "Criando o arquivo de teste do PHP phpinfo.php, aguarde..."
+	# op√ß√£o do comando: > (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando chown: -v (verbose)
+	touch /var/www/html/phpinfo.php
+	echo -e "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
+	chown -v www-data.www-data /var/www/html/phpinfo.php &>> $LOG
+echo -e "Arquivo criado com sucesso!!!, continuando com o script..."
+sleep 5
+echo
+#
+echo -e "Instala√ß√£o do LAMP-Server e PhpMyAdmin feito com sucesso!!! Pressione <Enter> para continuar."
+read
+sleep 3
+clear
+#
+echo -e "Atualizando e editando o arquivo de configura√ß√£o do Apache2, aguarde..."
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando cp: -v (verbose)
+	# op√ß√£o do comando sleep: 3 (seconds)
+	cp -v /etc/apache2/apache2.conf /etc/apache2/apache2.conf.old &>> $LOG
+	cp -v conf/apache2.conf /etc/apache2/apache2.conf &>> $LOG
+	echo -e "Pressione <Enter> para editar o arquivo: apache2.conf"
+		read
+		sleep 3
+	vim /etc/apache2/apache2.conf
+echo -e "Arquivo atualizado com sucesso!!!, continuando com o script..."
+sleep 5
+echo
+#
+echo -e "Atualizando e editando o arquivo de configura√ß√£o do PHP, aguarde..."
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando cp: -v (verbose)
+	# op√ß√£o do comando sleep: 3 (seconds)
+	cp -v /etc/php/7.2/apache2/php.ini /etc/php/7.2/apache2/php.ini.old &>> $LOG
+	cp -v conf/php.ini /etc/php/7.2/apache2/php.ini &>> $LOG
+	echo -e "Pressione <Enter> para editar o arquivo: php.ini"
+		read
+		sleep 3
+	vim /etc/php/7.2/apache2/php.ini
+echo -e "Arquivo atualizado com sucesso!!!, continuando com o script..."
+sleep 5
+echo
+#
+echo -e "Reinicializando o servi√ßo do Apache2, aguarde..."
+	sudo service apache2 restart
+echo -e "Servi√ßo reinicializado com sucesso!!!, continuando com o script..."
+sleep 5
+echo
+#
+echo -e "Permitindo o Root do MySQL se autenticar remotamente, aguarde..."
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando mysql: -u (user), -p (password) -e (execute)
 	mysql -u $USER -p$PASSWORD -e "$GRANTALL" mysql &>> $LOG
-	mysql -u $USER -p$PASSWORD -e "$FLUSH" mysql &>> $LOG	
-echo -e "Banco de Dados criado com sucesso!!!, continuando com o script..."
+	mysql -u $USER -p$PASSWORD -e "$FLUSH" mysql &>> $LOG
+echo -e "Permiss√£o alterada com sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #
-echo -e "Baixando o OpenFire do site oficial, aguarde..."
-	#opÁ„o do comando: &>> (redirecionar de saÌda padr„o)
-	#opÁ„o do comando wget: -O (output document file)
-	wget $OPENFIRE -O openfire.deb &>> $LOG
-echo -e "OpenFire baixado com sucesso!!!, continuando com o script..."
+echo -e "Atualizando e editando o arquivo de configura√ß√£o do MySQL, aguarde..."
+	# op√ß√£o do comando: &>> (redirecionar a sa√≠da padr√£o)
+	# op√ß√£o do comando cp: -v (verbose)
+	# op√ß√£o do comando sleep: 3 (seconds)
+	cp -v /etc/mysql/mysql.conf.d/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf.old &>> $LOG
+	cp -v conf/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf &>> $LOG
+	echo -e "Pressione <Enter> para editar o arquivo: mysqld.cnf"
+		read
+		sleep 3
+	vim /etc/mysql/mysql.conf.d/mysqld.cnf
+echo -e "Arquivo atualizado com sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #
-echo -e "Instalando o OpenFire, aguarde..."
-	#opÁ„o do comando: &>> (redirecionar de saÌda padr„o)
-	#opÁ„o do comando dpkg: -i (install)
-	dpkg -i openfire.deb &>> $LOG
-echo -e "OpenFire instalado com sucesso!!!, continuando com o script..."
+echo -e "Reinicializando os servi√ßos do MySQL, aguarde..."
+	sudo service mysql restart
+echo -e "Servi√ßo reinicializado com sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #
-echo -e "Verificando a porta de conex„o do OpenFire, aguarde..."
-	#opÁ„o do comando netstat: -a (all), -n (numeric)
-	netstat -an | grep 9090
-echo -e "Porta de conex„o verificada com sucesso!!!, continuando com o script..."
+echo -e "Verificando as portas de Conex√£o do Apache2 e do MySQL, aguarde..."
+	# op√ß√£o do comando netstat: a (all), n (numeric)
+	# op√ß√£o do comando grep: ' ' (aspas simples) protege uma string, \| (Escape e op√ß√£o OU)
+	netstat -an | grep '80\|3306'
+echo -e "Portas verificadas com sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #
-echo -e "InstalaÁ„o do OpenFire feita com Sucesso!!!"
+echo -e "Instala√ß√£o do LAMP-SERVER feito com Sucesso!!!"
 	# script para calcular o tempo gasto (SCRIPT MELHORADO, CORRIGIDO FALHA DE HORA:MINUTO:SEGUNDOS)
-	# opÁ„o do comando date: +%T (Time)
+	# op√ß√£o do comando date: +%T (Time)
 	HORAFINAL=`date +%T`
-	# opÁ„o do comando date: -u (utc), -d (date), +%s (second since 1970)
+	# op√ß√£o do comando date: -u (utc), -d (date), +%s (second since 1970)
 	HORAINICIAL01=$(date -u -d "$HORAINICIAL" +"%s")
 	HORAFINAL01=$(date -u -d "$HORAFINAL" +"%s")
-	# opÁ„o do comando date: -u (utc), -d (date), 0 (string command), sec (force second), +%H (hour), %M (minute), %S (second), 
+	# op√ß√£o do comando date: -u (utc), -d (date), 0 (string command), sec (force second), +%H (hour), %M (minute), %S (second), 
 	TEMPO=`date -u -d "0 $HORAFINAL01 sec - $HORAINICIAL01 sec" +"%H:%M:%S"`
-	# $0 (vari·vel de ambiente do nome do comando)
-	echo -e "Tempo gasto para execuÁ„o do script $0: $TEMPO"
+	# $0 (vari√°vel de ambiente do nome do comando)
+	echo -e "Tempo gasto para execu√ß√£o do script $0: $TEMPO"
 echo -e "Pressione <Enter> para concluir o processo."
-# opÁ„o do comando date: + (format), %d (day), %m (month), %Y (year 1970), %H (hour 24), %M (minute 60)
+# op√ß√£o do comando date: + (format), %d (day), %m (month), %Y (year 1970), %H (hour 24), %M (minute 60)
 echo -e "Fim do script $0 em: `date +%d/%m/%Y-"("%H:%M")"`\n" &>> $LOG
 read
 exit 1
