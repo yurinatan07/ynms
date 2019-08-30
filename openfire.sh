@@ -58,7 +58,7 @@ LOG="/var/log/$(echo $0 | cut -d'/' -f2)"
 #
 # Variáveis de configuração do MySQL e liberação de conexão remota para o usuário Root
 USER="root"
-PASSWORD="pti@2018"
+PASSWORD="G@ndini2019"
 AGAIN=$PASSWORD
 # opões do comando GRANT: grant (permissão), all (todos privilegios), on (em ou na | banco ou tabela), *.* (todos os bancos/tabelas)
 # to (para), user@'%' (usuário @ localhost), identified by (indentificado por - senha do usuário)
