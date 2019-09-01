@@ -42,7 +42,7 @@ LOG="/var/log/$(echo $0 | cut -d'/' -f2)"
 #
 # Declarando as variaveis para criação da Base de Dados do OpenFire
 USER="root"
-PASSWORD="password"
+PASSWORD="G@ndini2019"
 # opção do comando create: create (criação), database (base de dados), base (banco de dados)
 # opção do comando create: create (criação), user (usuário), identified by (indentificado por - senha do usuário), password (senha)
 # opção do comando grant: grant (permissão), usage (uso em | uso na), *.* (todos os bancos/tabelas), to (para), user (usário)
@@ -57,7 +57,7 @@ GRANTALL="GRANT ALL PRIVILEGES ON openfire.* TO 'openfire';"
 FLUSH="FLUSH PRIVILEGES;"
 #
 # Declarando a variável de download do OpenFire
-OPENFIRE="https://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_4.2.3_all.deb"
+OPENFIRE="https://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_4.4.1_all.deb"
 #
 # Verificando se o usuário e Root, Distribuição e >=18.04 e o Kernel >=4.15 <IF MELHORADO)
 # [ ] = teste de expressão, && = operador lógico AND, == comparação de string, exit 1 = A maioria dos erros comuns na execução
