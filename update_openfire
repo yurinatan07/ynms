@@ -1,3 +1,8 @@
+
+# Declarando a variável de download do OpenFire
+OPENFIRE="https://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_4.4.1_all.deb"
+
+
 echo -e "Baixando o OpenFire do site oficial, aguarde..."
 	#opção do comando: &>> (redirecionar de saída padrão)
 	#opção do comando wget: -O (output document file)
