@@ -51,5 +51,46 @@ Get-AppxPackage -AllUsers *Todo.exe* | Remove-AppxPackage
 Get-AppxPackage -AllUsers *Receiver* | Remove-AppxPackage
 Get-AppxPackage -AllUsers *HxCalendarAppImm* | Remove-AppxPackage
 Get-AppxPackage -AllUsers *WinStore.App.exe* | Remove-AppxPackage
+Get-AppxPackage -AllUsers *Netflix | Remove-AppxPackage
+Get-AppxPackage -AllUsers king.com.CandyCrushSodaSaga | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Windows.ParentalControls | Remove-AppxPackage
+Get-AppxPackage -AllUsers Windows.ContactSupport | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Xbox* | Remove-AppxPackage
+Get-AppxPackage -AllUsers microsoft.windowscommunicationsapps | Remove-AppxPackage # Mail and Calendar
+Get-AppxPackage -AllUsers Microsoft.WindowsCamera | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.SkypeApp | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Zune* | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.WindowsPhone | Remove-AppxPackage # Phone Companion
+Get-AppxPackage -AllUsers Microsoft.WindowsMaps | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Office.OneNote | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Office.Sway | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Appconnector | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.WindowsFeedback* | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Windows.FeatureOnDemand.InsiderHub | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Windows.Cortana | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.People | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Bing* | Remove-AppxPackage # Money, Sports, News, Finance and Weather
+Get-AppxPackage -AllUsers Microsoft.Getstarted | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.MicrosoftOfficeHub | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.WindowsSoundRecorder | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.3DBuilder | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Messaging | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.CommsPhone | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Advertising.Xaml | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Windows.SecondaryTileExperience | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Windows.ParentalControls | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Windows.ContentDeliveryManager | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Windows.CloudExperienceHost | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.Windows.ShellExperienceHost | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.BioEnrollment | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.OneConnect | Remove-AppxPackage
+Get-AppxPackage -AllUsers *Twitter* | Remove-AppxPackage
+Get-AppxPackage -AllUsers king.com.CandyCrushSodaSaga | Remove-AppxPackage
+Get-AppxPackage -AllUsers flaregamesGmbH.RoyalRevolt2 | Remove-AppxPackage
+Get-AppxPackage -AllUsers *Netflix | Remove-AppxPackage
+Get-AppxPackage -AllUsers Facebook.Facebook | Remove-AppxPackage
+Get-AppxPackage -AllUsers Microsoft.MinecraftUWP | Remove-AppxPackage
+Get-AppxPackage -AllUsers *MarchofEmpires | Remove-AppxPackage
 
 pause
