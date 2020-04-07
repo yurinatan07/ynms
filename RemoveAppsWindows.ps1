@@ -6,6 +6,13 @@ Start-Process powershell -Verb runAs -ArgumentList $arguments
 Break
 }
 
+Get-AppxPackage -AllUsers *bingweather* | Remove-AppxPackage
+Get-AppxPackage -AllUsers *bingsports* | Remove-AppxPackage
+Get-AppxPackage -AllUsers *onenote* | Remove-AppxPackage
+Get-AppxPackage -AllUsers *bingnews* | Remove-AppxPackage
+Get-AppxPackage -AllUsers *bingfinance* | Remove-AppxPackage
+Get-AppxPackage -AllUsers *getstarted* | Remove-AppxPackage
+Get-AppxPackage -AllUsers *officehub* | Remove-AppxPackage
 Get-AppxPackage -AllUsers *Microsoft.WindowsCamera* | Remove-AppxPackage
 Get-AppxPackage -AllUsers *Microsoft.WindowsStore* | Remove-AppxPackage
 Get-AppxPackage -AllUsers *Microsoft.Windows.Photos* | Remove-AppxPackage
