@@ -1,0 +1,5 @@
+Desativar memória Virtual;
+Limpeza de Disco;
+Prefetch;
+%temp%;
+powercfg.exe /hibernate off
