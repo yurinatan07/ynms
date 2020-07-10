@@ -3,3 +3,6 @@ Limpeza de Disco;
 Prefetch;
 %temp%;
 powercfg.exe /hibernate off
+
+## remover todos os apps da Windows Store
+Get-AppxPackage -AllUsers | where-object {$_.name –notlike "*store*"} | Remove-AppxPackage
